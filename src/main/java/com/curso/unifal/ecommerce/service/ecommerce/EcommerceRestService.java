@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 public class EcommerceRestService {
 
     public User getUserByRole(String role){
+        if(role == null || role.isEmpty()){
+            return null;
+        }
         return new User();
     }
 

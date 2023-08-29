@@ -4,6 +4,7 @@ import com.curso.unifal.ecommerce.domain.user.User;
 import com.curso.unifal.ecommerce.service.ecommerce.EcommerceRestService;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,8 +31,12 @@ public class EcommerceRestController {
      * @return
      */
     @GetMapping(path = "/v1/ecommerce/user")
-    public User getUser(@RequestParam String role){
-        return ecommerceRestService.getUserByRole(role);
+    public ResponseEntity<User> getUser(@RequestParam (required = false) String role){
+        User user = ecommerceRestService.getUserByRole(role);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     /**

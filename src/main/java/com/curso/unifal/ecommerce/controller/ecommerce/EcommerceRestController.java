@@ -1,5 +1,6 @@
 package com.curso.unifal.ecommerce.controller.ecommerce;
 
+import com.curso.unifal.ecommerce.client.viacep.ViaCepClient;
 import com.curso.unifal.ecommerce.domain.user.User;
 import com.curso.unifal.ecommerce.service.ecommerce.EcommerceRestService;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,18 @@ public class EcommerceRestController {
 //    @Autowired
     private final EcommerceRestService ecommerceRestService;
 
+    private final ViaCepClient viaCepClient;
+    @GetMapping(path = "/v1/zip-code")
+    /**
+     * ResponseEntity do tipo genérico
+     */
+    public ResponseEntity<?> getZipCodeInfoByZipCode(@RequestParam String zipCode){
+        return ResponseEntity.ok(viaCepClient.getZipCodeInfoByZipCode(zipCode));
+    }
+
     /**
      * O método responde a solicitações HTTP GET na rota "/v1/ecommerce/users"
-     * @param role:  espera um valor de consulta (query parameter) chamado "role".
+     * @param role:  es pera um valor de consulta (query parameter) chamado "role".
      *            a notação @RequestParam indica que o parâmetro "user" é passado como parte da URL.
      * @return
      */

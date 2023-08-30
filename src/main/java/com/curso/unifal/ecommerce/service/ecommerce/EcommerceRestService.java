@@ -1,6 +1,5 @@
 package com.curso.unifal.ecommerce.service.ecommerce;
 
-import com.curso.unifal.ecommerce.domain.user.User;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,41 +13,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EcommerceRestService {
-
-    public User getUserByRole(String role){
-        if(role == null || role.isEmpty()){
-            return null;
-        }
-        return new User();
-    }
-
-    public void createUser(User user){
-    }
-
-    public String deleteUser(String username){
-        if(username == null || username.isEmpty()){
-            return "ALL USERS HAVE BEEN DELETED!";
-        }
-        return "USER " + username + " DELETED!";
-    }
-
-    public User updateUser(User updateUser){
-        User userAlreadyCreated = new User();
-        userAlreadyCreated.setRole("CAIXA");
-        userAlreadyCreated.setPassword(" ");
-        userAlreadyCreated.setUser("JONAS");
-
-        if(updateUser.getRole() != null && !updateUser.getRole().isEmpty()){
-            userAlreadyCreated.setRole(updateUser.getRole());
-        }
-        if(updateUser.getPassword() != null && !updateUser.getPassword().isEmpty()){
-            userAlreadyCreated.setPassword(updateUser.getPassword());
-        }
-        if(updateUser.getUser() != null && !updateUser.getUser().isEmpty()){
-            userAlreadyCreated.setUser(updateUser.getUser());
-        }
-
-        return userAlreadyCreated;
-    }
 
 }
